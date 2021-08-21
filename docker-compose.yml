@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  server:
+    build: ./server
+    environment:
+      - "NODE_ENV=development"
+      - "PORT=3000"
+      - "SESSION_SECRET=${SESSION_SECRET}"
+    volumes:
+      - './server:/workspace'
+    networks:
+      - practice
+    ports:
+      - 3000:3000
+    stdin_open: true
+
+  client:
+    build: ./client
+    depends_on:
+      - server
+    environment:
+      - "NODE_ENV=development"
+      - "PORT=3005"
+      - "REACT_APP_API_BASE=http://localhost:3000"
+    volumes:
+      - './client/src:/app/src'
+    networks:
+      - practice
+    ports:
+      - 3005:3005
+    stdin_open: true
+
+networks:
+  practice:
+    driver: bridge
