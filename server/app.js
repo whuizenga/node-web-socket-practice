@@ -38,6 +38,10 @@ if(!isProduction) {
   });
 }
 
+app.get('/', (_req, res, _next) => {
+  res.json({ status: 'ok' })
+})
+
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500)
 
