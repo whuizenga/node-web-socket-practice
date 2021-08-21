@@ -1,7 +1,25 @@
+import * as React from 'react'
 import logo from './logo.svg';
+import { get } from './utils/fetch'
+
 import './App.css';
 
 function App() {
+  React.useEffect(
+    () => {
+      get('/kasudhfa')
+        .then(
+          () => {
+
+          },
+          () => {
+
+          }
+        )
+    },
+    []
+  )
+
   return (
     <div className="App">
       <header className="App-header">
